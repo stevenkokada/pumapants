@@ -1,0 +1,10 @@
+Big Idea
+-Scrape web for top news articles
+-Aggregate articles and perform ML
+-Display results
+
+Decisions
+-Develop with Git
+-Host on Heroku
+-Steven focus on front end (Javascript)/web scraping(python/newspaper)
+-Alicia focus on machine learning(python/sklearn)/web scraping(python/newspaper)
