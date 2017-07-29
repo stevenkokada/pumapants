@@ -54,6 +54,7 @@ app.get("/api/articles", function(req, res){
 
 // {"_id":, "url":, "title":, "keywords":, "coordinates":}
 app.post("/api/articles", function(req, res){
+	console.log(req.body);
 	var newArticle = json.parse(req.body);
 
 	if (!newArticle.url){
