@@ -153,7 +153,7 @@ app.get("api/articles/:id", function(req, res){
 
 
 app.delete("/api/contacts", function(req, res){
-	db.collection(ARTICLES_COLLECTION).deleteMany({}, function(err, result){
+	db.collection(ARTICLES_COLLECTION).drop(function(err, result){
 
 		if (err){
 			handleError(res, err.message, "Failed to delete articles.")
