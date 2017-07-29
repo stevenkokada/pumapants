@@ -152,7 +152,7 @@ app.get("api/articles/:id", function(req, res){
 })
 
 
-app.delete("/api/contacts", function(req, res){
+app.delete("/api/articles", function(req, res){
 	db.collection(ARTICLES_COLLECTION).drop(function(err, result){
 
 		if (err){
