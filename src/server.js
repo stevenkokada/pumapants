@@ -58,6 +58,8 @@ app.post("/api/articles", function(req, res){
 	var newArticle = req.body;
 
 	if (!newArticle.url){
+		console.log(newArticle.url);
+		console.log("here");
 		handleError(res, "Invalid user input", "Must provide all fields", 400);
 	}
 
