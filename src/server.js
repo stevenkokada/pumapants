@@ -1,8 +1,14 @@
 var express = require('express');
 var mongodb = require("mongodb");
 var bodyParser = require("body-parser");
-var json = require("JSON");
-var ObjectID = mongodb.ObjectID
+
+var ajv = require('ajv');
+let articleSchema = require('./new-article.json');
+
+
+
+
+var ObjectID = mongodb.ObjectID;
 
 
 var ARTICLES_COLLECTION = "articles";
@@ -12,6 +18,8 @@ var app = express();
 app.use(bodyParser.json());
 
 var db;
+
+
 
 mongodb.MongoClient.connect(process.env.MONGODB_URI, function(err, database){
 	if (err){
@@ -28,6 +36,54 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function(err, database){
 
 	});
 });
+
+
+
+
+var ajv = ajv({allErrors:true, removeAdditional:false});
+ajv.addSchema(articleSchema, 'new-article');
+
+
+/**
+ * Source: https://medium.com/@cachecontrol/validating-api-parameters-in-node-js-e8afb7920327
+ * Format error responses
+ * @param  {Object} schemaErrors - array of json-schema errors, describing each validation failure
+ * @return {String} formatted api response
+ */
+function errorResponse(schemaErrors) {
+  let errors = schemaErrors.map((error) => {
+    return {
+      path: error.dataPath,
+      message: error.message
+    }
+  })
+  return {
+    status: 'failed',
+    errors: errors
+  }
+}
+
+/**
+ * Source: https://medium.com/@cachecontrol/validating-api-parameters-in-node-js-e8afb7920327
+ * Validates incoming request bodies against the given schema,
+ * providing an error response when validation fails
+ * @param  {String} schemaName - name of the schema to validate
+ * @return {Object} response
+ */
+let validateSchema = (schemaName) => {
+  return (req, res, next) => {
+    let valid = ajv.validate(schemaName, req.body)
+    if (!valid) {
+      return res.send(errorResponse(ajv.errors))
+    }
+    next()
+  }
+}
+
+
+
+
+
 
 
 function handleError(res, reason, message, code){
@@ -53,10 +109,9 @@ app.get("/api/articles", function(req, res){
 });
 
 
-// {"_id":, "url":, "title":, "keywords":, "coordinates":}
-app.post("/api/articles", function(req, res){
-	console.log(req.body);
-	var newArticle = json.parse(req.body);
+app.post("/api/articles", validateSchema('new-article'), function(req, res){
+
+	var newArticle = req.body;
 
 	if (!newArticle.url){
 		handleError(res, "Invalid user input", "Must provide all fields", 400);

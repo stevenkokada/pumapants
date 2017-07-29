@@ -1,0 +1,39 @@
+{
+  "title": "new article",
+  "description": "describes properties required to create an article",
+  "type": "object",
+  "properties": {
+    "url": {
+      "type": "string",
+      "description": "url of the article"
+    },
+    "title": {
+      "type": "string",
+      "description": "title of the article"
+    },
+    "keywords": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true,
+      "description": "keywords of the article"
+    },
+
+    "coordinates": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "minItems": 2,
+      "maxItems": 2,
+      "description": "coordinates of the article happening"
+    },
+
+    "event": {
+      "type": "string",
+      "description": "event of the article"
+    }
+  },
+  "required": ["url", "title"]
+}
