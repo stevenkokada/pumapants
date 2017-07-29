@@ -10,10 +10,10 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 app.get('/', function(request, response) {
-  response.send("hi");
-});
+  response.send(app.get('port'));
+  });
 
-console.log(app.get('port'));
+
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
