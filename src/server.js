@@ -20,7 +20,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function(err, database){
 	}
 
 	db = database;
-	console.log("Mongo URI: ", process.env.MONGODB_URI);
+	//console.log("Mongo URI: ", process.env.MONGODB_URI);
 	console.log("Database connection successful");
 
 	var server = app.listen(process.env.PORT || 8080, function(){
@@ -57,7 +57,7 @@ app.get("/api/articles", function(req, res){
 app.post("/api/articles", function(req, res){
 	var newArticle = req.body;
 
-	if (!newArticle.name){
+	if (!newArticle.url){
 		handleError(res, "Invalid user input", "Must provide all fields", 400);
 	}
 
