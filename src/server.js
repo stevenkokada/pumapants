@@ -1,5 +1,6 @@
 var express = require('express');
 var mongodb = require("mongodb");
+var bodyParser = require("body-parser");
 var json = require("JSON");
 var ObjectID = mongodb.ObjectID
 
@@ -8,7 +9,7 @@ var ARTICLES_COLLECTION = "articles";
 
 
 var app = express();
-
+app.use(bodyParser.json());
 
 var db;
 
