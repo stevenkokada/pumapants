@@ -1,6 +1,6 @@
 var express = require('express');
-var bodyParser = require("body-parser");
 var mongodb = require("mongodb");
+var json = require("JSON");
 var ObjectID = mongodb.ObjectID
 
 
@@ -9,7 +9,6 @@ var ARTICLES_COLLECTION = "articles";
 
 var app = express();
 
-app.use(bodyParser.json());
 
 var db;
 
@@ -55,11 +54,9 @@ app.get("/api/articles", function(req, res){
 
 // {"_id":, "url":, "title":, "keywords":, "coordinates":}
 app.post("/api/articles", function(req, res){
-	var newArticle = req.body;
+	var newArticle = json.parse(req.body);
 
 	if (!newArticle.url){
-		console.log(newArticle.url);
-		console.log("here");
 		handleError(res, "Invalid user input", "Must provide all fields", 400);
 	}
 
