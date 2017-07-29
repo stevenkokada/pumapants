@@ -1,0 +1,7 @@
+{
+  "name": "News Analytics",
+  "description":"Baby's first webapp",
+  "repository": "https://github.com/stevenkokada/pumapants",
+  "keywords": ["node", "express", "heroku"],
+  "image": "heroku/nodejs"
+}
