@@ -1,5 +1,5 @@
 var express = require('express');
-var bodyPaser = require("body-parser");
+var bodyParser = require("body-parser");
 var mongodb = require("mongodb");
 var ObjectID = mongodb.ObjectID
 
