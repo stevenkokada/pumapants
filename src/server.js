@@ -137,6 +137,33 @@ app.post("/api/articles", validateSchema('new-article'), function(req, res){
 
 
 
+app.get("api/articles/:id", function(req, res){
+
+	db.collection(ARTICLES_COLLECTION).findOne({"_id": new ObjectID(req.params.id)}, function(err, doc){
+
+		if (err){
+			handleError(res, err.message, "Failed to get article.")
+		}
+
+		else{
+			res.status(200).json(doc)
+		}
+	})
+})
+
+
+app.delete("/api/contacts", function(req, res){
+	db.collection(ARTICLES_COLLECTION).deleteMany({}, function(err, result){
+
+		if (err){
+			handleError(res, err.message, "Failed to delete articles.")
+		}
+
+		else{
+			res.status(200).json(result)
+		}
+	})
+})
 
 
 

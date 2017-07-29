@@ -27,12 +27,24 @@
       },
       "minItems": 2,
       "maxItems": 2,
-      "description": "coordinates of the article happening"
+      "description": "coordinates of the event"
     },
 
     "event": {
       "type": "string",
       "description": "event of the article"
+    },
+
+    "eventdate": {
+      "format": "date-time",
+      "type": "string",
+      "description": "date of the event"
+    },
+
+    "postdate":{
+      "format": "date-time",
+      "type": "string",
+      "description": "date of the article"
     }
   },
   "required": ["url", "title"]
