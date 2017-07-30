@@ -2,7 +2,7 @@
   "name": "pumapants",
   "version": "1.0.0",
   "description": "Baby's first webapp",
-  "main": "index.js",
+  "main": "server.js",
   "dependencies": {
     "JSON": "^1.0.0",
     "ajv": "^5.2.2",
@@ -15,8 +15,8 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "start": "node server.js",
+    "heroku-postbuild": "npm install --only=dev && npm install && npm run build"
   },
   "repository": {
     "type": "git",
