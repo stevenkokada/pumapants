@@ -1,6 +1,10 @@
 var express = require('express');
 var mongodb = require("mongodb");
 var bodyParser = require("body-parser");
+var path = require('path');
+
+
+
 
 var ajv = require('ajv');
 let articleSchema = require('./new-article.json');
@@ -19,9 +23,9 @@ app.use(bodyParser.json());
 
 var db;
 
+var mongouri = "mongodb://heroku_q08z810t:2tgm82jf66dkidj8b83ljn783e@ds127883.mlab.com:27883/heroku_q08z810t"
 
-
-mongodb.MongoClient.connect(process.env.MONGODB_URI, function(err, database){
+mongodb.MongoClient.connect(process.env.MONGODB_URI || mongouri, function(err, database){
 	if (err){
 		console.log(err);
 		process.exit(1);
@@ -92,6 +96,11 @@ function handleError(res, reason, message, code){
 }
 
 
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, 'client/build')));
+
+
+
 app.get("/api/articles", function(req, res){
 
 	db.collection(ARTICLES_COLLECTION).find().toArray(function(err, docs){
@@ -160,7 +169,7 @@ app.delete("/api/articles", function(req, res){
 		}
 
 		else{
-			res.status(200).json(result)
+			res.status(200).send("Articles cleared.")
 		}
 	})
 })

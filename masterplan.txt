@@ -8,3 +8,9 @@ Decisions
 -Host on Heroku
 -Steven focus on front end (Javascript)/web scraping(python/newspaper)
 -Alicia focus on machine learning(python/sklearn)/web scraping(python/newspaper)
+
+
+Architecture:
+web: React sends API request -> Node queries Mongo
+pyworker: Trains model upon deploy
+          Every 30 seconds, newspaper scrapes -> model clusters -> updates Mongo
