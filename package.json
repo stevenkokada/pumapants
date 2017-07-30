@@ -2,7 +2,7 @@
   "name": "pumapants",
   "version": "1.0.0",
   "description": "Baby's first webapp",
-  "main": "index.js",
+  "main": "server.js",
   "dependencies": {
     "JSON": "^1.0.0",
     "ajv": "^5.2.2",
