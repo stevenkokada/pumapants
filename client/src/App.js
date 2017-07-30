@@ -31,7 +31,7 @@ class App extends Component {
         {/* Render the articles if we have them */}
         {articles.length ? (
           <div>
-            <h1>5 Articles.</h1>
+            <h1>{articles.length} Articles.</h1>
             <ul className="articles">
               {/*
                 Generally it's bad to use "index" as a key.
