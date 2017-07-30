@@ -1,32 +1,17 @@
 {
   "name": "pumapants",
   "version": "1.0.0",
-  "description": "Baby's first webapp",
-  "main": "server.js",
-  "dependencies": {
-    "JSON": "^1.0.0",
-    "ajv": "^5.2.2",
-    "body-parser": "^1.17.2",
-    "ejs": "^2.5.6",
-    "express": "^4.15.3",
-    "mongodb": "^2.2.30",
-    "path": "^0.12.7"
-  },
-  "devDependencies": {},
+  "description": "",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "heroku-postbuild": "npm install --only=dev && npm install && npm run build"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/stevenkokada/pumapants.git"
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/stevenkokada/pumapants/issues"
-  },
-  "homepage": "https://github.com/stevenkokada/pumapants#readme"
+  "dependencies": {
+    "express": "^4.15.3",
+    "password-generator": "^2.1.0"
+  }
 }
